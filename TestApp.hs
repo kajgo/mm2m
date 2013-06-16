@@ -10,7 +10,12 @@ testApp = msum [ homePage ]
 homePage :: ServerPart Response
 homePage = do
     hello <- liftIO sayHello
-    ok $ toResponse $ hello ++ " world!"
+    visitors <- liftIO getVisitors
+    ok $ toResponse $ show visitors
+
+getVisitors :: IO Integer
+getVisitors = do
+    return 3
 
 sayHello :: IO String
 sayHello = do
