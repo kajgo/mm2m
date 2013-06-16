@@ -5,7 +5,7 @@ else
     echo "fail"
 fi
 }
-ghc --make Main.hs
+ghc --make Main.hs || exit
 ./Main &
 serverPid=$!
 sleep 1
