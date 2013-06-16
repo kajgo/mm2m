@@ -11,7 +11,7 @@ dropVisitors() {
 }
 
 addVisitor() {
-    mongo --eval "db.visitors.insert({})" > /dev/null
+    curl -s http://localhost:8000/register_visitor > /dev/null
 }
 
 testVisitorCountShowUpOnPage() {

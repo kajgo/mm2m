@@ -5,7 +5,10 @@ import Mongo
 import Control.Monad.IO.Class
 
 testApp :: ServerPart Response
-testApp = msum [ homePage ]
+testApp = msum
+    [ dir "register_visitor" $ registerVisitorPage
+    , homePage
+    ]
 
 homePage :: ServerPart Response
 homePage = do
@@ -13,3 +16,8 @@ homePage = do
     case visitors of
         Right visitors -> ok $ toResponse $ show visitors
         Left _ -> ok $ toResponse "fail"
+
+registerVisitorPage :: ServerPart Response
+registerVisitorPage = do
+    liftIO registerVisitor
+    ok $ toResponse "Visit registerd."
